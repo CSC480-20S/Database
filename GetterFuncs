@@ -1,0 +1,22 @@
+# Validates that a Study contains the necessary objects before being posted to the DB
+def validation(info):
+    if "study_id" and "duration" and "institution" and "credits" and "description" in info:
+        post("Studies", info)
+    else:
+        print("Invalid Study Upload")
+        return False
+# returns False if the requirements aren't met and continue to post if it does.
+
+#Gets all the studies in the Studies Collection
+def getStudies():
+    connect = connector()["Studies"]
+    for studies in connect.find():
+        storage = studies
+    return storage
+
+# Gets all Studies based on the parameter info criteria
+def getStudiesByCriteria(info):
+    connect = connector()["Studies"]
+    check = connect.find(info)
+    return check
+    # returns a list of this filtered list of studies
